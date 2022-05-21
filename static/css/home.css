@@ -1,0 +1,368 @@
+:root {
+  --main-color: rgb(129, 127, 127);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--main-color);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.round {
+  margin-top: 0%;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  padding: 1px;
+  border: 8px solid transparent;
+  background: linear-gradient(60deg, #efa51a 10%, #ce00 100%);
+}
+.textcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.textcontainer h1 {
+  font-weight: 800;
+  font-size: 3rem;
+}
+.textcontainer h2 {
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+.in,
+.fb,
+.tw,
+.tt {
+  background-size: 2rem;
+  width: 80%;
+}
+.ind {
+  position: relative;
+  text-align: center;
+  width: 80%;
+  border-radius: 10px;
+  background-size: 40px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+}
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+.in {
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+
+  background-size: 40px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  outline: none;
+  background-color: white;
+}
+
+.in::placeholder {
+  text-align: center;
+}
+input.in:focus {
+  background-image: linear-gradient(to right #9933c4, #ffb94f, #ed4a63);
+}
+.border-gradient:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to left, #9933c4, #ffb94f, #ed4a63);
+}
+
+.border-gradient2:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-color: #4167b2;
+}
+
+.border-gradient3:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-color: #55acef;
+}
+.border-gradient4:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-color: black;
+}
+.border-gradient5:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-color: #ff0000;
+}
+.border-gradient6:focus {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-color: #080808;
+}
+
+.fb {
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+  background-size: 40px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  outline: none;
+  background-color: white;
+}
+
+.fb::placeholder {
+  text-align: center;
+}
+.tw {
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+  background-size: 40px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  background-color: white;
+  outline: none;
+}
+
+.tw::placeholder {
+  text-align: center;
+}
+.yt {
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+  background-size: 60px;
+  background-position: 1px;
+  background-repeat: no-repeat;
+  background-color: white;
+  outline: none;
+}
+
+.yt::placeholder {
+  text-align: center;
+}
+.ww {
+  text-align: center;
+  width: 50%;
+  border-radius: 10px;
+  background-size: 40px;
+  background-position: 1px;
+  background-repeat: no-repeat;
+  background-color: white;
+  outline: none;
+}
+
+.ww::placeholder {
+  text-align: center;
+}
+footer {
+  position: relative;
+  background-color: #e70a69;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+}
+footer a:hover {
+  color: #fff;
+}
+footer a {
+  color: #fff;
+}
+
+footer .topcontainer {
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+footer .topcontainer p {
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+}
+footer .topcontainer img {
+  width: 8rem;
+}
+button.ghost2 {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #333;
+  font-weight: light;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.linkbutton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.linkbutton button {
+  border-radius: 5px;
+  /* border: 1px solid #ff4b2b;
+  background-color: #ff4b2b; */
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+.linkbutton button:active {
+  transform: scale(0.95);
+}
+
+.linkbutton button:focus {
+  outline: none;
+}
+
+.linkbutton button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.popup_video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+.popup_video video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  border-radius: 5px;
+  border: 3px solid #fff;
+  object-fit: cover;
+}
+.popup_video span {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 50px;
+  color: #fff;
+  font-weight: bold;
+  z-index: 100;
+  cursor: pointer;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.color_switcher {
+  z-index: 10000000;
+  position: fixed;
+  top: 95px;
+  right: -200px;
+  width: 200px;
+  padding: 10px;
+  background: #fff;
+}
+.color_switcher.active {
+  right: 0 !important;
+}
+.color_switcher h3 {
+  color: #000;
+  font-size: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+  padding: 5px 0;
+}
+.color_switcher .switcherbutton {
+  position: absolute;
+  top: 0;
+  left: -75px;
+  color: #9933c4;
+  background: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 35px;
+}
+.color_switcher .switcherbutton i {
+  animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.color_switcher .theme_button_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.color_switcher .theme_button_container .theme_button {
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  margin: 5px;
+}
+@media (max-width: 768px) {
+  .popup_video video {
+    width: 95%;
+  }
+}
+@media (max-width: 600px) {
+  .textcontainer h1 {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  .textcontainer h2 {
+    font-weight: 400;
+    font-size: 1.8rem;
+  }
+  .ind {
+    width: 100%;
+  }
+  .in,
+  .fb,
+  .tw,
+  .tt,
+  .ww {
+    background-size: 2rem;
+    width: 80%;
+  }
+  .yt {
+    width: 80%;
+  }
+}

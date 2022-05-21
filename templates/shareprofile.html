@@ -1,0 +1,131 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block nav %}{% endblock nav %}
+{% block Content %}
+
+
+<div class="container">
+  
+    {% if not profile.image %}
+    <div class="imagecontainer">
+      <img class="round" class="float-left" src="{%static '/images/Tony.jpg'%}" alt="" />
+    </div>
+    {% else %}
+    <div class="imagecontainer">
+      <img class="round" src="{{profile.image.url}}" alt="" />
+    </div>
+    {% endif %}
+    <div class="textcontainer">
+      <h1>{{profile.Name}}</h1>
+      <h2>Profession</h2>
+      <div class="smailllinks">
+        <a href="mailto:{{request.user.profil.emiall}}"
+        ><i
+            class="icon fa-regular fa-envelope"
+            style="color: #fff; font-size: 2.5rem; margin: 0.5rem 2rem 1rem 0rem"
+          ></i
+        ></a>
+        <a href="tel:{{request.user.profil.number}}">
+            <i
+            class="icon fa-solid fa-phone"
+            style="color: #fff; font-size: 2.5rem; margin: 0.5rem 1rem 1rem 0rem"
+          ></i
+        ></a>
+      </div>
+    </div>
+    <div class="linkbutton">
+      {% for button in request.user.links_set.all %}
+      
+      {% if button.name == "Youtube" %}
+  
+      <button
+        class="yt ghost2 p-3"
+        style="color: black;"
+    onclick="videoopen()"
+
+      >
+      <img width="60px" class="float-left" src="{% static '/images/YouTube.png' %}" alt="" srcset="">
+           <h3>{{button.name}}</h3>
+
+    </button>
+        {% elif button.name == "Instagram" %}
+  
+        <a
+        role="button"
+        class="in ghost2 p-3"
+        id="{{button.id}}"
+              href="{{button.link}}"
+
+      style="color: black;"
+      >
+      
+      <img width="40px" class="float-left" src="{% static '/images/insta.png' %}" alt="" srcset="">
+           <h3>{{button.name}}</h3>
+
+    </a>
+        {% elif button.name == "Facebook" %}
+  
+        <a
+        role="button"
+        class="in ghost2 p-3"
+        id="{{button.id}}"
+              href="{{button.link}}"
+
+      style="color: black;"
+      >
+      
+      <img width="40px" class="float-left" src="{% static '/images/FB.png' %}" alt="" srcset="">
+           <h3>{{button.name}}</h3>
+
+    </a>
+        {% elif button.name == "Twitter" %}
+  
+        <a
+        role="button"
+        class="in ghost2 p-3"
+        id="{{button.id}}"
+              href="{{button.link}}"
+
+      style="color: black;"
+      >
+      
+      <img width="40px" class="float-left" src="{% static '/images/twitter.png' %}" alt="" srcset="">
+           <h3>{{button.name}}</h3>
+
+    </a>
+        {% elif button.name == "Other_Links" %}
+  
+        <a
+        role="button"
+        class="in ghost2 p-3"
+        id="{{button.id}}"
+              href="{{button.link}}"
+
+      style="color: black;"
+      >
+      
+      <img width="40px" class="float-left" src="{% static '/images/www.png' %}" alt="" srcset="">
+      <h3>{{button.name}}</h3>
+    </a>
+      {% endif %}
+        
+      {% endfor %}
+</div>
+</div>
+
+<div class="popup_video">
+    <span onclick="videoclose()">&times;</span>
+    <iframe width="853" height="490" src="https://www.youtube.com/embed/-QgJgZCJvo4?start=394" title="YouTube video player" frameborder="0" allow="autoplay;" autoplay allowfullscreen></iframe>
+</div>
+  
+<script>
+    
+  function videoopen() {
+    document.querySelector(".popup_video").style.display = "block";
+  }
+  function videoclose() {
+    document.querySelector(".popup_video").style.display = "none";
+  }
+
+</script>
+{% endblock Content %}

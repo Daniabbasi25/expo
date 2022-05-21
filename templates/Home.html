@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% load static %} {% block Content %}
+
+<div class="container">
+  {% if not profile_obj.image %}
+  <div class="imagecontainer">
+    <img class="round" src="{%static '/images/Tony.jpg'%}" alt="" />
+  </div>
+  {% else %}
+  <div class="imagecontainer">
+    <img class="round" src="{{profile_obj.image.url}}" alt="" />
+  </div>
+  {% endif %}
+  <div class="textcontainer">
+   
+    
+    <h1>{{profile_obj.get_full_name}}</h1>
+
+    <h2>{{profile_obj.get_full_Profesion}}</h2>
+   
+  </div>
+  <form method="post" id="pro_form">
+    {% csrf_token %}
+  </form>
+  <div class="ind">
+    <input
+      class="in border-gradient"
+      type="text"
+      name="Instagram"
+      form="pro_form"
+      placeholder="Instagram"
+      style="background-image: url({% static '/images/insta.png' %})"
+    />
+  </div>
+  <div class="ind">
+    <input
+      class="fb border-gradient2"
+      type="text"
+      form="pro_form"
+
+      name="Facebook"
+      placeholder="Facebook"
+      style="background-image: url({%static '/images/FB.png'%})"
+    />
+  </div>
+  <div class="ind">
+    <input
+      class="tw border-gradient3"
+      type="text"
+      form="pro_form"
+
+      name="Twitter"
+      placeholder="Twitter"
+      style="background-image: url({%static '/images/twitter.png'%})"
+    />
+  </div>
+  <!-- <div class="ind"><input class="tt border-gradient4" type="text" placeholder="Tiktok" >
+    </div> -->
+  <div class="ind">
+    <input
+      class="yt border-gradient5"
+      type="text"
+      form="pro_form"
+
+      name="Youtube"
+      placeholder="Youtube"
+      style="background-image: url({% static '/images/YouTube.png' %})"
+    />
+  </div>
+  <div class="ind">
+    <input
+      class="ww border-gradient6"
+      type="text"
+      form="pro_form"
+
+      name="Other_Links"
+      placeholder="Other Links"
+      style="background-image: url({%static '/images/www.png'%})"
+    />
+  </div>
+  <button
+    type="submit"
+    form="pro_form"
+
+    class="btn btn-lg"
+    style="margin-right: 1rem; background-color: #ff4b2b; color: #fff"
+  >
+    Save
+  </button>
+</div>
+{% endblock %}

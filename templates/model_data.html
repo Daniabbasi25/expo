@@ -1,0 +1,157 @@
+{% extends 'base.html' %} {% load static %} {% block Content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+
+  <div
+    class="alert alert-danger alert-dismissible fade show"
+    role="alert"
+    style="z-index: 5000000000000000"
+  >
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </div>
+  {% endfor %}
+</ul>
+{% endif %}
+<div class="color_switcher">
+  <div class="switcherbutton" onclick="active()">
+    <!-- <i class="fas fa-cog"></i> -->
+    <i class="fa-solid fa-palette"></i>
+  </div>
+  <h3>Select Color</h3>
+  <div class="theme_button_container">
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(69, 65, 65)"
+      onclick="changecolor('rgb(69, 65, 65)')"
+    >
+    </span>
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(203, 30, 30)"
+      onclick="changecolor('rgb(203, 30, 30)')"
+    >
+    </span>
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(20, 245, 54)"
+      onclick="changecolor('rgb(20, 245, 54)')"
+    >
+    </span>
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(20, 245, 54)"
+      onclick="changecolor('rgb(20, 245, 54)')"
+    >
+    </span>
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(20, 245, 54)"
+      onclick="changecolor('rgb(20, 245, 54)')"
+    >
+    </span>
+    <span
+      class="theme_button"
+      data-color="#fff"
+      style="background: rgb(40, 7, 49)"
+      onclick="changecolor('#fff')"
+    >
+    </span>
+  </div>
+</div>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>{{link.name}}</h1>
+    {{form}}
+    <button
+      type="submit"
+      class="btn btn-lg"
+      style="margin-right: 1rem; background-color: #ff4b2b; color: #fff"
+    >
+      Save
+    </button>
+    {% if link.name == "Youtube" %}
+    
+    <button
+    data-dismiss="modal"
+    type="button"
+    class="btn btn-dangrous"
+    style="margin-right: 1rem; background-color: #bea631; color: #fff"
+    onclick="videoopen()"
+    >
+    View
+  </button>
+  {% endif %}
+    
+    <a
+    role="button"
+  class="btn btn-lg"
+  href="{% url 'delete_link' link.id %}"
+  style="margin-right: 1rem; background-color: #ff2600; color: #fff"
+  >
+  delete
+</a>
+</form>
+</div>
+<div class="popup_video">
+    <span onclick="videoclose()">&times;</span>
+    <iframe width="853" height="490" src="{{link.link}}" title="YouTube video player" frameborder="0" allow="autoplay;" autoplay allowfullscreen></iframe>
+</div>
+  
+<script>
+  function active() {
+    document.querySelector(".color_switcher").classList.toggle("active");
+  }
+  let themebutton = document.querySelectorAll("theme_button");
+  console.log(themebutton);
+  function changecolor(color) {
+    document.querySelector(":root").style.setProperty("--main-color", color);
+    // localStorage.setItem("theme", color);
+  }
+  themebutton.forEach((color) => {
+    color.addEventListener("Click", () => {
+      let dataColor = color.getAttribute("data-color");
+      console.log(dataColor);
+      document
+        .querySelector(":root")
+        .style.setProperty("--main-color", dataColor);
+    });
+  });
+  function initThemeSelector() {
+    const themeSelect = document.getElementById("themeSelect");
+    const themeStylesheetLink = document.getElementById("stylesheetlink");
+    const currentTheme = localStorage.getItem("theme") || "default";
+
+    function activateTheme(themeName) {
+      themeStylesheetLink.setAttribute("href", `css/themes/${themeName}.css`);
+    }
+
+    themeSelect.addEventListener("change", () => {
+      activateTheme(themeSelect.value);
+      localStorage.setItem("theme", themeSelect.value);
+    });
+
+    themeSelect.value = currentTheme;
+    activateTheme(currentTheme);
+  }
+
+  initThemeSelector();
+
+  function videoopen() {
+    document.querySelector(".popup_video").style.display = "block";
+  }
+  function videoclose() {
+    document.querySelector(".popup_video").style.display = "none";
+  }
+
+</script>
+{% endblock %}
