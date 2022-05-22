@@ -1,9 +1,8 @@
 from dataclasses import field, fields
-from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profil, Links
-
+from django import forms
 
 class CreateUserForm(UserCreationForm):
 
@@ -13,15 +12,22 @@ class CreateUserForm(UserCreationForm):
             self.fields[fieldname].help_text = None
 
 
-class CreateProfileForm(ModelForm):
+class ColorInput(forms.TextInput):
+    input_type = 'color'
+
+class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profil
-        exclude = ['user', 'color', 'slug']
+        exclude = ['user', 'slug']
         fields = '__all__'
+        widgets = {
+            'color': ColorInput()
+        }
 
 
 
-class ChangeUserForm(ModelForm):
+
+class ChangeUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username',)
@@ -32,7 +38,7 @@ class ChangeUserForm(ModelForm):
             self.fields[fieldname].help_text = None
 
 
-class UpdateLinksForm(ModelForm):
+class UpdateLinksForm(forms.ModelForm):
     class Meta:
         model = Links
         fields = ("link",)
