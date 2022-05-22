@@ -17,7 +17,7 @@ class Profil(models.Model):
     number = models.IntegerField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     slug = models.SlugField(max_length=1000, null=True, blank=True)
-    color = models.CharField(max_length=300, null=True, blank=True)
+    color = models.CharField(max_length=300, null=True, blank=True, default='#ff416c')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
