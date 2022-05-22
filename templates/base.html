@@ -1,6 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
+{% if request.user.profil.color %}
 <html lang="en" style="--main-color:{{request.user.profil.color}};">
+  {% else %}
+  <html lang="en" style="--main-color:#ff416c;">
+{% endif %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
