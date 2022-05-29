@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from .models import Profil, Links
-from .Forms import CreateUserForm, CreateProfileForm, ChangeUserForm, UpdateLinksForm
+from .Forms import CreateUserForm, CreateProfileForm, ChangeUserForm, UpdateLinksForm, UpdateLinksForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from . import Forms
@@ -104,12 +104,26 @@ def EditProfile(request):
     form1 = CreateProfileForm(
         request.POST or None, request.FILES or None, instance=request.user.profil)
     form2 = ChangeUserForm(request.POST or None, instance=request.user)
+    form3 = UpdateLinksForm()
     if form1.is_valid() and form2.is_valid():
         form1.save()
         form2.save()
         return redirect("Home")
-    context = {'form1': form1, 'form2': form2}
+    context = {'form1': form1, 'form3': form3, 'form2': form2}
     return render(request, 'editprofile.html', context)
+
+
+
+@login_required(login_url='LoginPage')
+def link_form_handler(request):
+    form = UpdateLinksForm(request.POST or None)
+    print(request.user.id)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
+        return redirect("Profile")
+    return redirect("Home")
 
 
 @login_required(login_url='LoginPage')

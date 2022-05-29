@@ -42,5 +42,6 @@ class ChangeUserForm(forms.ModelForm):
 class UpdateLinksForm(forms.ModelForm):
     class Meta:
         model = Links
-        fields = ("link",)
+        fields = "__all__"
+        exclude = ('user',)
 

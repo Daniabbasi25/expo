@@ -11,6 +11,7 @@ urlpatterns = [
     path('', home, name="Home"),
     path('EditProfile/', EditProfile, name="EditProfile"),
     path('Profile/', Profile, name="Profile"),
+    path('link/handler/', link_form_handler, name="link_form_handler"),
     path('ShareProfile/<slug:slu>', shareprofile, name="ShareProfile"),
     path('delete_link/<int:pk>', delete_link, name="delete_link"),
     path('update_link/<int:pk>', update_link, name="update_link"),

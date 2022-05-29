@@ -48,7 +48,7 @@
 
     >
     <img width="60px" class="float-left" src="{% static '/images/YouTube.png' %}" alt="" srcset="">
-    <h3>{{button.name}}</h3>
+    <h3>{{button.link_name}}</h3>
   </a>
       {% elif button.name == "Instagram" %}
 
@@ -61,7 +61,7 @@
     >
     
     <img width="40px" class="float-left" src="{% static '/images/insta.png' %}" alt="" srcset="">
-    <h3>{{button.name}}</h3>
+    <h3>{{button.link_name}}</h3>
   </a>
       {% elif button.name == "Facebook" %}
 
@@ -74,7 +74,7 @@
     >
     
     <img width="40px" class="float-left" src="{% static '/images/FB.png' %}" alt="" srcset="">
-    <h3>{{button.name}}</h3>
+    <h3>{{button.link_name}}</h3>
   </a>
       {% elif button.name == "Twitter" %}
 
@@ -87,7 +87,7 @@
     >
     
     <img width="40px" class="float-left" src="{% static '/images/twitter.png' %}" alt="" srcset="">
-    <h3>{{button.name}}</h3>
+    <h3>{{button.link_name}}</h3>
   </a>
       {% elif button.name == "Other_Links" %}
 
@@ -100,7 +100,7 @@
     >
     
     <img width="40px" class="float-left" src="{% static '/images/www.png' %}" alt="" srcset="">
-    <h3>{{button.name}}</h3>
+    <h3>{{button.link_name}}</h3>
   </a>
     {% endif %}
       

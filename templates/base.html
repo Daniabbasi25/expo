@@ -107,17 +107,11 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'Profile'%} ">Profile</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'ShareProfile' request.user.profil.slug %}">Share Profile</a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <a
-          href="{% url 'ShareProfile' request.user.profil.slug %}"
-          target="_blank"
-          role="button"
-            class="btn my-2 my-sm-0"
-            style="margin-right: 1rem; background-color: #ff4b2b; color: #fff"
-          >
-            Copy Profile Link
-          </a>
           <a
             class="btn my-2 my-sm-0"
             type="submit"
