@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block Content %}
+{% extends 'base.html' %} {% load static widget_tweaks %} {% block Content %}
 {% if messages %}
 <ul class="messages">
   {% for message in messages %}
@@ -133,16 +133,22 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-body">
+                <form method="post">
+                  {% csrf_token %}
                 <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Username</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {% render_field form2.username class="form-control" placeholder="Enter username" %}
+
+                  </div>
                   <div class="col-sm-3">
                     <h6 class="mb-0">Full Name</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="John Doe"
-                    />
+                    {% render_field form1.Name class="form-control" placeholder="Enter Full Name" %}
+
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -150,11 +156,8 @@
                     <h6 class="mb-0">Profesion</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="For Example (Frelancer)"
-                    />
+                    {% render_field form1.profession class="form-control" placeholder=form1.profession.label %}
+
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -162,11 +165,7 @@
                     <h6 class="mb-0">Email</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="john@example.com"
-                    />
+                    {% render_field form1.emiall class="form-control" placeholder=form1.emiall.label %}
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -174,12 +173,7 @@
                     <h6 class="mb-0">Phone</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input
-                      type="tel"
-                      name="phone"
-                      id="phone"
-                      class="form-control"
-                    />
+                    {% render_field form1.number type="tel" id="phone" class="form-control" %}
                   </div>
                   <div class="alert alert-info" style="display: none"></div>
                 </div>
@@ -188,7 +182,7 @@
                     <h6 class="mb-0">Profile Picture</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input type="file" class="form-control" />
+                    {% render_field form1.image class="form-control" %}
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -196,18 +190,14 @@
                     <h6 class="mb-0">color</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input
-                      type="color"
-                      class="form-control"
-                      value="Bay Area, San Francisco, CA"
-                    />
+                    {% render_field form1.color class="form-control" %}
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-3"></div>
                   <div class="col-sm-9 text-secondary">
                     <input
-                      type="button"
+                      type="submit"
                       class="btn btn-primary px-4"
                       value="Save Changes"
                     />
@@ -220,6 +210,7 @@
                     />
                   </div>
                 </div>
+              </form>
               </div>
             </div>
             <div class="row hide" id="addlink">

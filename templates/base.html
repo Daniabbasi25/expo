@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-{% if request.user.profil.color %}
-<html lang="en" style="--main-color:{{request.user.profil.color}};">
+{% if request.user.profil.color or profile.color %}
+<html lang="en" style="--main-color:{% block html_color %}{{request.user.profil.color}}{% endblock html_color %};">
   {% else %}
   <html lang="en" style="--main-color:#ff416c;">
 {% endif %}
@@ -110,7 +110,7 @@
           </li>
 
           <li class="nav-item active">
-            <a class="nav-link disabled" href="{% url 'Profile'%} ">Profile</a>
+            <a class="nav-link" href="{% url 'Profile'%} ">Profile</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

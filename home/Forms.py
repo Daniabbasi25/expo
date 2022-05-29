@@ -27,6 +27,7 @@ class CreateProfileForm(forms.ModelForm):
 
 
 
+
 class ChangeUserForm(forms.ModelForm):
     class Meta:
         model = User
