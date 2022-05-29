@@ -15,6 +15,9 @@
   {% endfor %}
 </ul>
 {% endif %}
+
+{% comment %}
+
 <div class="color_switcher">
   <div class="switcherbutton" onclick="active()">
     <!-- <i class="fas fa-cog"></i> -->
@@ -121,4 +124,241 @@
 
   initThemeSelector();
 </script>
+{% endblock %} {% endcomment %}
+
+
+    <div class="m-4">
+      <div class="main-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-body">
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Profesion</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="For Example (Frelancer)"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Phone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="alert alert-info" style="display: none"></div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Profile Picture</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="file" class="form-control" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">color</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="color"
+                      class="form-control"
+                      value="Bay Area, San Francisco, CA"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-9 text-secondary">
+                    <input
+                      type="button"
+                      class="btn btn-primary px-4"
+                      value="Save Changes"
+                    />
+                    <input
+                      type="button"
+                      class="btn px-4"
+                      value="Add Link"
+                      style="background-color: #ff405d; color: #fff"
+                      onclick="show()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row hide" id="addlink">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="d-flex align-items-center mb-3">Add Link</h5>
+                    <div class="row mb-3">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Link Title</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="My Instagram Profile"
+                        />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Link</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="My Instagram Profile"
+                        />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-9 text-secondary">
+                        <div class="dropdown">
+                          <button
+                            class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Link Type
+                          </button>
+                          <div
+                            class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton"
+                          >
+                            <a class="dropdown-item" href="#">Facebook</a>
+                            <a class="dropdown-item" href="#">Instagram</a>
+                            <a class="dropdown-item" href="#">Youtube Video</a>
+                            <a class="dropdown-item" href="#">Other Links</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-9 text-secondary">
+                        <input
+                          type="button"
+                          class="btn btn-primary px-4"
+                          value="Save"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style type="text/css">
+      .row {
+        justify-content: center;
+      }
+      .hide {
+        display: none;
+      }
+      .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid transparent;
+        border-radius: 0.25rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%),
+          0 2px 6px 0 rgb(206 206 238 / 54%);
+      }
+      .me-2 {
+        margin-right: 0.5rem !important;
+      }
+    </style>
+
+    <script type="text/javascript"></script>
+    <script>
+      function getIp(callback) {
+        fetch("https://ipinfo.io/json?token=<your token>", {
+          headers: { Accept: "application/json" },
+        })
+          .then((resp) => resp.json())
+          .catch(() => {
+            return {
+              country: "us",
+            };
+          })
+          .then((resp) => callback(resp.country));
+      }
+
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+      const info = document.querySelector(".alert-info");
+
+      function process(event) {
+        event.preventDefault();
+
+        const phoneNumber = phoneInput.getNumber();
+
+        info.style.display = "";
+        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+      }
+      function show() {
+        document.getElementById("addlink").style.display = "flex";
+        console.log("show is clicked");
+      }
+      function hide() {
+        document.getElementById("addlink").style.display = "none";
+        console.log("show is clicked");
+      }
+    </script>
 {% endblock %}
