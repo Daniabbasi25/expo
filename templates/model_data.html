@@ -15,57 +15,6 @@
   {% endfor %}
 </ul>
 {% endif %}
-<div class="color_switcher">
-  <div class="switcherbutton" onclick="active()">
-    <!-- <i class="fas fa-cog"></i> -->
-    <i class="fa-solid fa-palette"></i>
-  </div>
-  <h3>Select Color</h3>
-  <div class="theme_button_container">
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(69, 65, 65)"
-      onclick="changecolor('rgb(69, 65, 65)')"
-    >
-    </span>
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(203, 30, 30)"
-      onclick="changecolor('rgb(203, 30, 30)')"
-    >
-    </span>
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(20, 245, 54)"
-      onclick="changecolor('rgb(20, 245, 54)')"
-    >
-    </span>
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(20, 245, 54)"
-      onclick="changecolor('rgb(20, 245, 54)')"
-    >
-    </span>
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(20, 245, 54)"
-      onclick="changecolor('rgb(20, 245, 54)')"
-    >
-    </span>
-    <span
-      class="theme_button"
-      data-color="#fff"
-      style="background: rgb(40, 7, 49)"
-      onclick="changecolor('#fff')"
-    >
-    </span>
-  </div>
-</div>
 
 <div class="container">
     <form method="POST" enctype="multipart/form-data">
@@ -107,9 +56,9 @@
 </a>
 </form>
 </div>
-<div class="popup_video">
+<div class="popup_video w-full">
     <span onclick="videoclose()">&times;</span>
-    <iframe width="853" height="490" src="{{link.link}}" title="YouTube video player" frameborder="0" allow="autoplay;" autoplay allowfullscreen></iframe>
+    <iframe width="90%" height="90%" src="{{link.link}}" title="YouTube video player" frameborder="0" allow="autoplay;" autoplay allowfullscreen></iframe>
 </div>
   
 <script>
