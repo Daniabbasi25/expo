@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-{% if request.user.profil.color or profile.color %}
+{% if request.user.profil.color %}
 <html lang="en" style="--main-color:{% block html_color %}{{request.user.profil.color}}{% endblock html_color %};">
   {% else %}
   <html lang="en" style="--main-color:#ff416c;">
@@ -101,11 +101,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'Home' %}"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
             <a class="nav-link" href="{% url 'EditProfile'%}">Edit Profile </a>
           </li>
 
@@ -139,7 +134,7 @@
     {% block Content %} {% endblock %}
     <footer class="ftr">
       <div class="topcontainer">
-        <p>Via</p>
+        <p class="mt-3">Via</p>
         <img
           src="{%static '/images/Main logo slogan_edited 1.png'%}"
           alt=""

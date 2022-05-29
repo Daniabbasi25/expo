@@ -65,6 +65,7 @@ def RegisterUser(request):
 
 @login_required(login_url='LoginPage')
 def home(request):
+    return redirect("EditProfile")
     context = {}
     profile_obj = request.user.profil
     context['profile_obj'] = profile_obj
