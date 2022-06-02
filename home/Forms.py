@@ -1,4 +1,3 @@
-from dataclasses import field, fields
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profil, Links

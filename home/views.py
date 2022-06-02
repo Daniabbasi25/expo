@@ -102,7 +102,7 @@ def home(request):
 @login_required(login_url='LoginPage')
 def EditProfile(request):
     form1 = CreateProfileForm(
-        request.POST or None, request.FILES or None, instance=request.user.profil)
+        request.POST, request.FILES or None, request.FILES or None, instance=request.user.profil)
     form2 = ChangeUserForm(request.POST or None, instance=request.user)
     form3 = UpdateLinksForm()
     if form1.is_valid() and form2.is_valid():
