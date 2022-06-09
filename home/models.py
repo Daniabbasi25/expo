@@ -1,6 +1,10 @@
+from operator import contains
+from os import link
 from django.db import models
 from django.contrib.auth.models import User
 from .helpers import *
+from phonenumber_field.modelfields import PhoneNumberField
+from re import search
 # Create your models here.
 
 
@@ -13,12 +17,19 @@ class Profil(models.Model):
     Name = models.CharField(max_length=300, null=True, blank=True)
     profession = models.CharField(max_length=300, null=True, blank=True)
     emiall = models.EmailField(null=True, blank=True)
-    number = models.IntegerField(null=True, blank=True)
+    # number = models.IntegerField(null=True, blank=True)
+    number=PhoneNumberField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     slug = models.SlugField(max_length=1000, null=True, blank=True)
-    color = models.CharField(max_length=300, null=True,
-                             blank=True, default='#ff416c')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    class colorchose(models.TextChoices):
+        cloudy_white  = 'cloudy white', 'cloudy white'
+        Air_white = 'Air white', 'Air white'
+        Aurora_B = 'Aurora B', 'Aurora B'
+        Mid_Night = 'Mid Night', 'Mid Night'
+        Cool_Grey= 'Cool Grey', 'Cool Grey'
+
+    color = models.CharField(max_length=300, choices=colorchose.choices, default=colorchose.cloudy_white)
 
     def __str__(self):
         return str(self.user)
@@ -59,3 +70,11 @@ class Links(models.Model):
     name = models.CharField(max_length=300, choices=NAME_CHOICES.choices, default=NAME_CHOICES.Other_Links)
     link_name = models.CharField(max_length=300)
     link = models.URLField(max_length=300)
+    def linkassplit(self):
+        if search("=",self.link) :
+            x=self.link.split('=')[-1]
+            return x
+        else:
+            x=self.link.split('/')[-1]
+            return x
+        

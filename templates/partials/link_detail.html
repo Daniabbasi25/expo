@@ -1,0 +1,49 @@
+<div class="row" hx-target="this" hx-swap="outerHTML">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          
+          <h5 class="d-flex align-items-center mb-3"> Link Detail</h5>
+          
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link Title</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{Link.link_name}}
+              {% comment %} {% render_field form.link_name class="form-control readonly" placeholder="Enter Link Title" %} {% endcomment %}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{Link.link}}
+              {% comment %} {% render_field form.link class="form-control" placeholder="Enter Link" %} {% endcomment %}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link Type</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{Link.name}}
+              {% comment %} {% render_field form.name class="form-control"  %} {% endcomment %}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-9">
+              
+            </div>
+            <div class="col-sm-3 text-secondary">
+              <button class="btn btn-success px-4"  hx-get="{% url 'update_link' Link.pk %}"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="btn px-4" style="background-color: #ff405d; color: #fff" hx-post="{% url 'deletlink' Link.id %}"><i class="fa-solid fa-trash-can"></i></button>
+              {% comment %} {% render_field form.name class="form-control"  %} {% endcomment %}
+            </div>
+          </div>
+         
+      </div>
+    </div>
+  </div>
+</div>

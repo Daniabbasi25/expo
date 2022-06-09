@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static widget_tweaks %} {% block Content %}
+{% extends 'base.html' %} {% load static widget_tweaks crispy_forms_tags %} {% block Content %}
 {% if messages %}
 <ul class="messages">
   {% for message in messages %}
@@ -135,7 +135,9 @@
               <div class="card-body">
                 <form method="post"  enctype="multipart/form-data">
                   {% csrf_token %}
-                <div class="row mb-3">
+                  {{form2|crispy}}
+                  {{form1|crispy}}
+                {% comment %} <div class="row mb-3">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Username</h6>
                   </div>
@@ -194,69 +196,32 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-3"></div>
+                  <div class="col-sm-3"></div> {% endcomment %}
                   <div class="col-sm-9 text-secondary">
-                    <input
+                    <button
                       type="submit"
                       class="btn btn-primary px-4"
-                      value="Save Changes"
-                    />
-                    <input
-                      type="button"
-                      class="btn px-4"
-                      value="Add Link"
-                      style="background-color: #ff405d; color: #fff"
-                      onclick="show()"
-                    />
+                      
+                    >Save Changes</button>
+                  
                   </div>
                 </div>
               </form>
               </div>
-            </div>
-            <div class="row hide" id="addlink">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-body">
-                    <form action="{% url 'link_form_handler' %}" method="post" enctype="multipart/form-data">
-                      {% csrf_token %}
-                    <h5 class="d-flex align-items-center mb-3">Add Link</h5>
-                    <div class="row mb-3">
-                      <div class="col-sm-3">
-                        <h6 class="mb-0">Link Title</h6>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        {% render_field form3.link_name class="form-control" placeholder="Enter Link Title" %}
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col-sm-3">
-                        <h6 class="mb-0">Link</h6>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        {% render_field form3.link class="form-control" placeholder="Enter Link" %}
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <div class="col-sm-3"></div>
-                      <div class="col-sm-9 text-secondary">
-                        {% render_field form3.name class="form-control"  %}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-3"></div>
-                      <div class="col-sm-9 text-secondary">
-                        <input
-                          type="submit"
-                          class="btn btn-primary px-4"
-                          value="Save"
-                        />
-                      </div>
-                    </div>
-                  </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <button
+                      class="btn px-4"
+                      style="background-color: #ff405d; color: #fff"
+                      hx-get="{% url 'linkform' %}"
+                      hx-swap="beforeend"
+                      hx-target="#linkforms"
+                      {% comment %} onclick="show()" {% endcomment %}
+
+                    >Add Link</button>
+            <div id="linkforms">
+            {% for Link in links %}
+            {% include 'partials/link_detail.html' %}
+            {% endfor %}
+          </div>
           </div>
         </div>
       </div>

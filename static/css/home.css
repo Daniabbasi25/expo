@@ -1,5 +1,8 @@
 :root {
-  --main-color: rgb(129, 127, 127);
+  --main-color: #fff;
+  --text-color: #fff;
+  --button-color: #fff;
+  --link-color:#fff;
 }
 * {
   margin: 0;
@@ -7,11 +10,43 @@
   box-sizing: border-box;
 }
 body {
-  background-color: var(--main-color);
+  background: var(--main-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
+}
+.mycontacticon{
+  color: var(--link-color); font-size: 2.5rem; margin: 0.5rem 2rem 1rem 0rem;
+}
+.mynewlink {
+  color: var(--button-color) !important;
+  width: 45vw;
+  text-align: center !important;
+  display: flex;
+  flex: 4 8;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--button-color);
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center !important;
+}
+.mynewlink p{
+  width: 10rem !important;
+  align-self: center !important;
+  text-align: center;
+}
+.mynewlink:hover {
+  background-color: var(--button-color);
+  color: var(--main-color) !important;
+  text-decoration: none;
+ 
+}
+.mynewlink p {
+  margin-bottom: 0rem !important;
 }
 .container {
   display: flex;
@@ -29,8 +64,23 @@ body {
   height: 150px;
   width: 150px;
   padding: 1px;
-  border: 8px solid transparent;
-  background: linear-gradient(60deg, #efa51a 10%, #ce00 100%);
+  /* border: 8px solid transparent;*/
+  /* background: linear-gradient(60deg, #efa51a 10%, rgb(238, 0, 99) 100%);  */
+}
+.imagecontainer{
+  background: linear-gradient(60deg, #efa51a 10%, rgb(238, 0, 99) 100%);;
+  padding: .2rem;
+  border-radius: 50%;
+}
+.imageoutercontainer{
+  background-color: #fff;
+  padding: .2rem;
+  border-radius: 50%;
+}
+.imageoutercontainergradient{
+  background: linear-gradient(60deg, #efa51a 50%, rgb(238, 0, 139) 100%); 
+  padding: .3rem;
+  border-radius:50%;
 }
 .textcontainer {
   display: flex;
@@ -179,7 +229,7 @@ input.in:focus {
 }
 footer {
   position: relative;
-  background-color: #e70a69;
+  background-color: #000;
   width: 100%;
   color: #fff;
   font-size: 1rem;
@@ -192,12 +242,18 @@ footer a:hover {
 footer a {
   color: #fff;
 }
+.topcontainer a{
+  background-color: #e80a50 !important;
+  color: #fff !important;
+  margin-left: 1rem;
+}
 
 footer .topcontainer {
   width: 100%;
   background-color: #000;
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.0rem;
   justify-content: center;
   align-items: center;
   bottom: 0;
@@ -224,18 +280,7 @@ button.ghost2 {
   align-items: center;
   gap: 1rem;
 }
-.linkbutton button {
-  border-radius: 5px;
-  /* border: 1px solid #ff4b2b;
-  background-color: #ff4b2b; */
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-}
+
 .linkbutton button:active {
   transform: scale(0.95);
 }
@@ -258,7 +303,7 @@ button.ghost2 {
   width: 100%;
   display: none;
 }
-.popup_video video {
+.popup_video iframe {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -342,12 +387,61 @@ button.ghost2 {
   border-radius: 50px;
   margin: 5px;
 }
+.copybox{
+  position: absolute;
+  right: 0rem;
+  top: 6rem;
+  /* background-color: #333; */
+  
+}
+.copybox input{
+  /* display: none; */
+  opacity: 0;
+}
+.copybox button{
+  width: 5rem;
+  background-color: var(--button-color) !important;
+  color:var(--main-color) !important ;
+  text-align: center;
+  border: none;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 1rem;
+  top: 0rem;
+}
+.copybox button:hover{
+  background-color:var(--main-color) !important ;
+  color: var(--button-color) !important;
+}
 @media (max-width: 768px) {
-  .popup_video video {
+  .popup_video iframe {
     width: 95%;
   }
 }
 @media (max-width: 600px) {
+  .copybox button{
+    width: 4rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+  }
+  .mynewlink {
+    width: 90vw;
+    gap: 3.5rem;
+    padding: 0.5rem 0.5rem;
+
+    font-size: 1.8rem;
+  }
+  .mynewlink:hover {
+    background-color: var(--text-color);
+    color: var(--main-color) !important;
+    text-decoration: none;
+  }
+  .mynewlink p {
+    margin-bottom: 0rem !important;
+  }
   .textcontainer h1 {
     font-weight: 700;
     font-size: 2rem;
@@ -370,4 +464,37 @@ button.ghost2 {
   .yt {
     width: 80%;
   }
+  .mycontacticon{
+    font-size: 1.8rem;
+  }
+  .mynewlink i{
+    font-size: 2.5rem;
+
+  }
+  .smailllinks{
+    width: 100%;
+    text-align: center;
+    /* background-color: #e80a50; */
+    padding-left: 1.5rem;
+  }
+  .mynewlink p{
+    font-size: 1.5rem;
+    font-weight: normal;
+
+  }
+  
+.round {
+  margin-top: 0%;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 130px;
+  width: 130px;
+  padding: 1px;
+  /* border: 8px solid transparent;*/
+  /* background: linear-gradient(60deg, #efa51a 10%, rgb(238, 0, 99) 100%);  */
+}
+footer p{
+  font-size: 1rem !important;
+  /* font: optional; */
+}
 }

@@ -6,9 +6,13 @@ from .models import themecolor,Links,Profil
 admin.site.register(themecolor)
 admin.site.register(Links)
 
-
+# class LinkInLineAdmin(admin.TabularInline):
+#     model = Links
 
 @admin.register(Profil)
+# class ProfileAdmin(admin.ModelAdmin):
+#     inlines = [LinkInLineAdmin]
+# admin.site.register(Profil, ProfileAdmin)
 class ProfilAdmin(admin.ModelAdmin):
     '''Admin View for Profil'''
     list_display = ('user','total_social_links')
@@ -21,6 +25,6 @@ class ProfilAdmin(admin.ModelAdmin):
         return format_html_join(
             mark_safe('<br>'),
             '{}',
-            ((mark_safe(f"{link.name} | <a href='{link.link}'>{link.link} </a>"),) for link in instance.user.links_set.all())
+            ((mark_safe(f"{link.name} |<h3>{link.link_name}</h3>| <a href='{link.link}'>{link.link} </a><br>======<br>"),) for link in instance.user.links_set.all())
         )or mark_safe("<span class='errors'>The user does not have any link.</span>")
 

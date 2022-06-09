@@ -1,0 +1,58 @@
+{% load static widget_tweaks crispy_forms_tags %}
+<div class="row" id="addlink" hx-target="this" hx-swap="outerHTML">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <h5 class="d-flex align-items-center mb-3">Add Link</h5>
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link Title</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {% render_field form.link_name class="form-control readonly" placeholder="Enter Link Title" %}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {% render_field form.link class="form-control" placeholder="Enter Link" %}
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Link Type</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {% render_field form.name class="form-control"  %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9 text-secondary">
+              {% if Link %}
+              <button 
+                class="btn btn-primary px-4"
+                hx-post="{% url 'updatelinkdata' Link.id %}"
+              />
+              Save
+            </button>
+            {% else %}
+            <button 
+            class="btn btn-primary px-4"
+            hx-post="{% url 'link_form_handler' %}"
+          />
+          Save
+        </button>
+            {% endif %}
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

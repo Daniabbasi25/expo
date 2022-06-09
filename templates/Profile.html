@@ -1,246 +1,268 @@
-{% extends 'base.html' %} {% load static %} {% block Content %}
+{% extends 'base.html' %} {% load static %} 
 
-<div class="container">
-  
-  {% if not request.user.profil.image %}
-  <div class="imagecontainer">
-    <img class="round" src="{%static '/images/Tony.jpg'%}" alt="" />
-  </div>
-  {% else %}
-  <div class="imagecontainer">
-    <img class="round" src="{{request.user.profil.image.url}}" alt="" />
-  </div>
-  {% endif %}
-  <div class="textcontainer">
-    <h1>{{request.user.profil.Name}}</h1>
-    <h2>Profession</h2>
-    <div class="smailllinks">
+{% block Content %}
+
       
-      {% if request.user.profil.emiall %}
-      <a href="mailto:{{request.user.profil.emiall}}"
-        ><i
-          class="icon fa-regular fa-envelope"
-          style="color: #fff; font-size: 2.5rem; margin: 0.5rem 2rem 1rem 0rem"
-        ></i
-      ></a>
-      {% endif %}
-      {% if request.user.profil.number %}
 
-      <a href="tel:{{request.user.profil.number}}">
-        <i
-          class="icon fa-solid fa-phone"
-          style="color: #fff; font-size: 2.5rem; margin: 0.5rem 1rem 1rem 0rem"
-        ></i
-      ></a>
-      {% endif %}
 
-    </div>
+
+  <div class="copybox">
+    <input id="myinput" type="text" value="{% url 'ShareProfile' request.user.profil.slug %}"/>
+    <button id="btncopy">
+      <i class="fa-solid fa-copy"></i>
+    </button>
   </div>
-  <div class="linkbutton">
-    {% for button in request.user.links_set.all %}
+  <div class="container">
     
-    {% if button.name == "Youtube" %}
-
-    <a
-      class="yt ghost2 p-md-3 p-sm-1"
-      style="color: black;"
-      href="{% url 'update_link' button.id %}"
-
-    >
-    <img width="60px" class="float-left" src="{% static '/images/YouTube.png' %}" alt="" srcset="">
-    <h3>{{button.link_name}}</h3>
-  </a>
-      {% elif button.name == "Instagram" %}
-
-      <a
-      role="button"
-      class="in ghost2 p-md-3 p-sm-1"
-      id="{{button.id}}"
-    href="{% url 'update_link' button.id %}"
-    style="color: black;"
-    >
-    
-    <img width="40px" class="float-left" src="{% static '/images/insta.png' %}" alt="" srcset="">
-    <h3>{{button.link_name}}</h3>
-  </a>
-      {% elif button.name == "Facebook" %}
-
-      <a
-      role="button"
-      class="in ghost2 p-md-3 p-sm-1"
-      id="{{button.id}}"
-    href="{% url 'update_link' button.id %}"
-    style="color: black;"
-    >
-    
-    <img width="40px" class="float-left" src="{% static '/images/FB.png' %}" alt="" srcset="">
-    <h3>{{button.link_name}}</h3>
-  </a>
-      {% elif button.name == "Twitter" %}
-
-      <a
-      role="button"
-      class="in ghost2 p-md-3 p-sm-1"
-      id="{{button.id}}"
-    href="{% url 'update_link' button.id %}"
-    style="color: black;"
-    >
-    
-    <img width="40px" class="float-left" src="{% static '/images/twitter.png' %}" alt="" srcset="">
-    <h3>{{button.link_name}}</h3>
-  </a>
-      {% elif button.name == "Other_Links" %}
-
-      <a
-      role="button"
-      class="in ghost2 p-md-3 p-sm-1"
-      id="{{button.id}}"
-    href="{% url 'update_link' button.id %}"
-    style="color: black;"
-    >
-    
-    <img width="40px" class="float-left" src="{% static '/images/www.png' %}" alt="" srcset="">
-    <h3>{{button.link_name}}</h3>
-  </a>
+    {% if not request.user.profil.image %}
+    <div class="imagecontainer">
+      <img class="round" src="{%static '/images/Tony.jpg'%}" alt="" />
+    </div>
+    {% else %}
+    {% comment %} <div class="imageoutercontainergradient">
+    <div class="imageoutercontainer">
+    <div class="imageoutercontainergradient">
+    <div class="imageoutercontainer"> {% endcomment %}
+    <div class="imagecontainer">
+      <img class="round" src="{{request.user.profil.image.url}}" alt="" />
+    </div>
+  {% comment %} </div>
+  </div>
+  </div>
+  </div> {% endcomment %}
     {% endif %}
+    <div class="textcontainer" style="margin-top:1.5rem">
+      {% if  request.user.profil.Name%}
+      <h1 style="color: var(--text-color);">{{request.user.profil.Name}}</h1>
+      {% endif %}
+      {% if  request.user.profil.profession%}
+      <h2 style="color: var(--text-color);">{{request.user.profil.profession}}</h2>
+      {% endif %}
+      <div class="smailllinks">
+        
+        {% if request.user.profil.emiall %}
+        <a href="mailto:{{request.user.profil.emiall}}"
+          ><i
+            class="icon fa-regular fa-envelope mycontacticon"
+            
+          ></i
+        ></a>
+        {% endif %}
+        {% if request.user.profil.number %}
+  
+        <a href="tel:{{request.user.profil.number}}">
+          <i
+            class="icon fa-solid fa-phone mycontacticon"
+            
+          ></i
+        ></a>
+        {% endif %}
+  
+      </div>
+    </div>
+    <div class="linkbutton">
+      {% for button in request.user.links_set.all %}
       
-    {% endfor %}
+      {% if button.name == "Youtube" %}
+  
+      <a
+      class="mynewlink"
+        onclick="videoopen()"
+        id="videolink"
 
-    
-  </div>
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Update or Delet Link
-          </h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="bodyfooter">
-          
-        </div>
+  
+      >
+      <i class="fa-brands fa-youtube"></i>
+      <p>{{button.link_name}}</p>
+    </a>
+
+    <div class="popup_video">
+      <span onclick="videoclose()">&times;</span>
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/{{button.linkassplit}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
+    </div>
+
+    {% comment %} <div id="videostory" class="mfp-hide" style="max-width:75%; margin:0 auto;">
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/{{button.linkassplit}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div> {% endcomment %}
+
+        {% elif button.name == "Instagram" %}
+  
+        <a
+        role="button"
+        class="mynewlink"
+        id="{{button.id}}"
+      href="{{button.link}}"
+      
+      >
+      
+      <i class="fa-brands fa-instagram"></i>
+      <p>{{button.link_name}}</p>
+    </a>
+        {% elif button.name == "Facebook" %}
+  
+        <a
+        role="button"
+        class="mynewlink"
+        id="{{button.id}}"
+      href="{{button.link}}"
+     
+      >
+      
+      <i class="fa-brands fa-facebook"></i>
+      <p>{{button.link_name}}</p>
+    </a>
+        {% elif button.name == "Twitter" %}
+  
+        <a
+        role="button"
+        class="mynewlink"
+        id="{{button.id}}"
+      href="{{button.link}}"
+  
+      >
+      <div>
+        <i class="fa-brands fa-twitter"></i>
       </div>
+      <div>
+        <p>{{button.link_name}}</p>
+      </div>
+     
+      
+    </a>
+        {% elif button.name == "Other_Links" %}
+  
+        <a
+        role="button"
+        class="mynewlink"
+        id="{{button.id}}"
+      href="{{button.link}}"
+      style="color: black;"
+      >
+      
+      <i class="fa-solid fa-network-wired"></i>
+      <p>{{button.link_name}}</p>
+    </a>
+      {% endif %}
+        
+      {% endfor %}
+  
+      
+    </div>
 
+  
+    <!-- ===========================================YOUTUBE START -->
+    <div
+      class="modal fade"
+      id="YOUTUBEMODEL"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Update or Delet Link
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Link:</label>
+                <input type="text" class="form-control" id="recipient-name" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              style="margin-right: 1rem; background-color: #ff4b2b; color: #fff"
+            >
+              Update
+            </button>
+  
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-dangrous"
+              style="margin-right: 1rem; background-color: #bea631; color: #fff"
+              onclick="videoopen()"
+            >
+              VIEW
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-dangrous"
+              style="margin-right: 1rem; background-color: #ff2b4b; color: #fff"
+            >
+              Delet
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- ===========================================YOUTUBE END  -->
   </div>
 
-  <!-- ===========================================YOUTUBE START -->
-  <div
-    class="modal fade"
-    id="YOUTUBEMODEL"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Update or Delet Link
-          </h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Link:</label>
-              <input type="text" class="form-control" id="recipient-name" />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-            style="margin-right: 1rem; background-color: #ff4b2b; color: #fff"
-          >
-            Update
-          </button>
-
-          <button
-            data-dismiss="modal"
-            type="button"
-            class="btn btn-dangrous"
-            style="margin-right: 1rem; background-color: #bea631; color: #fff"
-            onclick="videoopen()"
-          >
-            VIEW
-          </button>
-          <button
-            data-dismiss="modal"
-            type="button"
-            class="btn btn-dangrous"
-            style="margin-right: 1rem; background-color: #ff2b4b; color: #fff"
-          >
-            Delet
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ===========================================YOUTUBE END  -->
-</div>
-<div class="popup_video">
-  <span onclick="videoclose()">&times;</span>
-  <video
-    src="https://www.youtube.com/watch?v=wXG11HcJtOw"
-    autoplay
-    controls
-  ></video>
-</div>
-
-<script>
-
-  function initThemeSelector() {
-    const themeSelect = document.getElementById("themeSelect");
-    const themeStylesheetLink = document.getElementById("stylesheetlink");
-    const currentTheme = localStorage.getItem("theme") || "default";
-
-    function activateTheme(themeName) {
-      themeStylesheetLink.setAttribute("href", `css/themes/${themeName}.css`);
+  
+  <script>
+    function videoopen() {
+      document.querySelector(".popup_video").style.display = "block";
     }
+    function videoclose() {
+      document.querySelector(".popup_video").style.display = "none";
+    }
+    const myinp=document.getElementById("myinput");
+    const btncopy=document.getElementById("btncopy");
+    btncopy.onclick=function(){
+      // select the text
+      myinp.select();
+      // copy the text
+      document.execCommand("Copy");
+    }
+  
+  
+    function initThemeSelector() {
+      const themeSelect = document.getElementById("themeSelect");
+      const themeStylesheetLink = document.getElementById("stylesheetlink");
+      const currentTheme = localStorage.getItem("theme") || "default";
+  
+      function activateTheme(themeName) {
+        themeStylesheetLink.setAttribute("href", `css/themes/${themeName}.css`);
+      }
+  
+      themeSelect.addEventListener("change", () => {
+        activateTheme(themeSelect.value);
+        localStorage.setItem("theme", themeSelect.value);
+      });
+  
+      themeSelect.value = currentTheme;
+      activateTheme(currentTheme);
+    }
+  
+    initThemeSelector();
+  
+    function videoopen() {
+      document.querySelector(".popup_video").style.display = "block";
+    }
+    function videoclose() {
+      document.querySelector(".popup_video").style.display = "none";
+    }
+  </script>
+ 
+  
 
-    themeSelect.addEventListener("change", () => {
-      activateTheme(themeSelect.value);
-      localStorage.setItem("theme", themeSelect.value);
-    });
-
-    themeSelect.value = currentTheme;
-    activateTheme(currentTheme);
-  }
-
-  initThemeSelector();
-
-  function videoopen() {
-    document.querySelector(".popup_video").style.display = "block";
-  }
-  function videoclose() {
-    document.querySelector(".popup_video").style.display = "none";
-  }
-</script>
 {% endblock %}

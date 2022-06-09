@@ -14,7 +14,12 @@ urlpatterns = [
     path('link/handler/', link_form_handler, name="link_form_handler"),
     path('ShareProfile/<slug:slu>', shareprofile, name="ShareProfile"),
     path('delete_link/<int:pk>', delete_link, name="delete_link"),
-    path('update_link/<int:pk>', update_link, name="update_link"),
+    path('htmx/update_link/<int:pk>/update', update_link, name="update_link"),
+    path('htmx/linkform/',Create_linkform,name='linkform'),
+    path('htmx/link/<pk>/',detail_link,name='linkdetail'),
+    path('htmx/link/<pk>/edit/',Update_linkdata,name='updatelinkdata'),
+    path('htmx/link/<pk>/delete/',delete_link,name='deletlink'),
+    
 
 ]
 
